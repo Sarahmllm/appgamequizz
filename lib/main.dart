@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/mainwidget/bottombar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  void _onNavTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,11 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             const SizedBox(height: 20),
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFFFB8500),
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
@@ -105,6 +113,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+      ),
+
+      bottomNavigationBar: Bottombar(
+        currentIndex: _selectedIndex,
+        onTap: _onNavTap,
       ),
     );
   }
@@ -145,7 +158,3 @@ class _TopMenuItem extends StatelessWidget {
     );
   }
 }
-
-
-
-
